@@ -1,0 +1,76 @@
+---
+title: "DDP Week Four Project"
+author: "Wendy G."
+date: "3/16/2021"
+output: ioslides_presentation
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+This slide show presents the Shiny application I created for the final project of the Developing Data Products course.
+
+The Shiny application can be found here:
+
+[https://wgreena1.shinyapps.io/DDP_Week_4_Project/](https://wgreena1.shinyapps.io/DDP_Week_4_Project/)
+
+The source code for the Shiny application can be found here: 
+
+[https://github.com/wgreena1/DDP_Week_4_Project](https://github.com/wgreena1/DDP_Week_4_Project)
+
+## Dataset
+
+This Shiny application was created for use with the ChickWeight dataset from the R datasets package. 
+The dimensions of this dataset are:
+```{r}
+dim(ChickWeight)
+```
+This dataset includes the following variables:
+
+```{r}
+names(ChickWeight)
+```
+
+## Application Purpose
+
+The purpose of the Shiny app is to provide a tool that allows the user to predict the weight of a chick based on two input variables:   
+
+- age (in days)  
+- diet 
+
+The weight prediction is based on a linear model created using the ChickWeight dataset.
+
+## Loading the Shiny Application
+
+When the Shiny application is loaded, both a user input interface and a scatterplot of the ChickWeight data (as seen below) are displayed.
+
+```{r, comment= NA}
+library(ggplot2)
+ggplot(ChickWeight) + 
+        aes(x=Time, y=weight, col=as.factor(Diet)) +
+        geom_point() +
+        xlab("Chick Age (Days)")+
+        ylab("Chick Weight (Grams)")+
+        scale_color_discrete("Experimental Diet")
+```
+
+## Using the Shiny Application
+
+Inputs are selected by the user with either a slider (chick age) or drop-down menu tool (chick diet). 
+
+There is also an option for the user to select to add a regression line to the scatterplot that corresponds to the linear model (weight ~ age) for the selected chick diet. 
+
+After the user makes their selections, the "submit" button must be pressed.
+
+## Shiny Application Output
+
+After the user has hit the submit button, the predicted chick weight is displayed in the main panel.
+
+If the user has selected to display the regression line, this line (with error bars) will be added to the plot.
+
+## Thank you!
